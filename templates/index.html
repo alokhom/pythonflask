@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Welcome</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> 
+</head> 
+
+<style>
+  tr.spaceUnder>td {
+    padding-bottom: 4em;
+  }
+  input[type='radio'] {
+    height: 20px;
+    width: 20px;
+    vertical-align: baseline;
+  }
+  .main {
+    width: 75%;
+    float: left;
+  }
+  .container img {
+    margin-right: 10px; /* Adds space between the image and text */
+  }
+  select {  
+    width: 200px;  
+    padding: 8px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/audiowide/v20/l7gdbjpo0cum0ckerWCdmA_OIxo.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/audiowide/v20/l7gdbjpo0cum0ckerWCdlg_O.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  h2.text-heading-default{
+    font-size: 20px;
+    font-family: 'Audiowide', sans-serif;
+  }
+  .blink_me {
+  animation: blinker 1s linear infinite;
+  font-size: 22px;font-family: 'Audiowide', sans-serif;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<p style="font-size: 24px;font-family: 'Audiowide', sans-serif;">
+  Welcome to Rock-Paper-Scissors Game !!! 
+  <br>
+  <div class="blink_me">
+    Click, play, win by getting 10 Points !!!
+    <br>
+    Have Fun !!!
+  </div>
+  <br>
+</p>
+  
+<body>
+  <form action="/gamepage" method="post">
+    <table  style="width:500px;">
+      <td>
+        <img src="/static/images/welcome-new.png" alt="comp" width="340" height="320">
+      </td>
+    </table>
+    <label style="font-size: 24px;font-family: 'Audiowide', sans-serif;"> Choose a player-id !!! </label> <br><br>
+    <input id="text" type="text" name="playerid" placeholder="myidabcd" pattern="^[A-Za-z]{8}$" onkeydown="return /[a-z]/i.test(event.key)" onkeypress="return event.charCode != 32" minlength="8" maxlength="8" style="width: 150px;height: 35px;"/>
+    <button id="button" class="button-54" name="Click" type="submit" value="Click">
+      <label style="font-size: 20px;">Lets Go !!!!!!</label>
+    </button>
+  </form>
+</body>
+</html>

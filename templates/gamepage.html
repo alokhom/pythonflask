@@ -1,0 +1,179 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> 
+</head> 
+
+<style>
+  tr.spaceUnder>td {
+    padding-bottom: 4em;
+  }
+  input[type='radio'] {
+    height: 20px;
+    width: 20px;
+    vertical-align: baseline;
+  }
+  .main {
+    width: 75%;
+    float: left;
+  }
+  .container img {
+    margin-right: 10px; /* Adds space between the image and text */
+  }
+  select {  
+    width: 200px;  
+    padding: 8px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/audiowide/v20/l7gdbjpo0cum0ckerWCdmA_OIxo.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/audiowide/v20/l7gdbjpo0cum0ckerWCdlg_O.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  h2.text-heading-default{
+    font-size: 20px;
+    font-family: 'Audiowide', sans-serif;
+  }
+  .blink_me {
+  animation: blinker 1s linear infinite;
+  font-size: 22px;font-family: 'Audiowide', sans-serif;
+  }
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+fieldset { 
+            border: 2px solid black; /* Border thickness and color */ 
+            padding: 10px;          /* Space inside the border */ 
+            display: inline-block;   /* Makes the box fit the content */ 
+} 
+</style>
+
+
+<p style="font-size: 22px;font-family: 'Audiowide', sans-serif;">
+{% with itext = get_flashed_messages(category_filter=["inputtext"])%}
+{% if itext %}
+  {% for inpt in itext %}
+      The Rock-paper-scissors Challenge: <br><label style="color:red">
+        {{ inpt }} </label> vs. Computer ?
+  {% endfor %}
+{% endif %}
+{% endwith %}
+      <br>
+      <fieldset style="font-size: 20px;font-family: 'Audiowide', sans-serif;"> 
+      Rules : Lose  -1, Win  +1, Tie  0, Fame  +10
+      </fieldset>
+      <br>
+</p>
+
+  
+<body>
+  <form action="/comp" method="post">
+    <table  style="width:400px;">
+      <colgroup>
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 50%;">
+      </colgroup>
+      <tbody>
+          <tr style="height:150px">
+                  <td>
+                    <p style="font-size: 26px;font-family: 'Audiowide', sans-serif;">Click & Find !</p>
+                    <button class="button-54" name="button1" type="submit" value="Rock">
+                      <label style="font-size: 20px;">rock</label>
+                    </button>
+                    <br>
+                    <br>
+                    <button class="button-54" name="button1" type="submit" value="Paper">
+                      <label style="font-size: 20px;">paper</label>
+                    </button>
+                    <br>
+                    <br>
+                    <button class="button-54" name="button1" type="submit" value="Scissors">
+                      <label style="font-size: 20px;">scissors</label>
+                    </button>
+                  </td>
+
+                {% with img = get_flashed_messages(category_filter=["image"])%}
+                {% if img %}
+                  {% for i in img %}
+                  <td>
+                    <img src="/static/images/{{ i }}" alt="comp" width="250" height="250">
+                  </td>
+                  {% endfor %}
+                {% else %}
+                  <td>
+                    <img src="/static/images/computer.png" alt="comp" width="250" height="250">
+                  </td>
+                {% endif %}
+                {% endwith %}
+
+          </tr>
+      </tbody>
+    </table>
+  </form>
+    <!-- <label style="font-size: 25px;"> Set a unique player-id </label>
+    <input id="text" type="text" name="playerid"  style="width: 200px;"/> -->
+</body>
+
+
+<!-- Print result in the browser  -->
+<!-- Needs to redirect to the same page -->
+<!-- return redirect('comp')    -->
+
+{% with info = get_flashed_messages(category_filter=["info"])%}
+{% if info %}
+  {% for inf in info %}
+  <div class="blink_me">
+    <h2 class="text-heading-default">{{ inf }}</h2>
+  </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+{% with message = get_flashed_messages(category_filter=["message"])%}
+{% if message %}
+  {% for msg in message %}
+  <h2 style="font-size: 20px; font-family: 'Audiowide',sans-serif; color: red;">Total points : {{ msg }}</h2>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<p style="font-size: 20px;font-family: 'Audiowide', sans-serif;">Hall of fame !!!</p>
+<select Name="lb" Size="3">
+  <option>Robert </option> 
+  <option>Jonas </option> 
+{% with winmes = get_flashed_messages(category_filter=["winnermessage"])%}
+{% if winmes %}
+  {% for msg in winmes %}
+    <option> {{ msg }}</option>  
+  {% endfor %}
+{% endif %}
+{% endwith %}
+</select>
+
+<br>
+<br>
+<button class="button-54" name="button2" type="submit" value="StartOver" onclick="location.href='http://rps.systemtracker.no-ip.org/'">
+<!-- <button class="button-54" name="button2" type="submit" value="StartOver" onclick="location.href='http://localhost:5000/'"> -->
+  <label style="font-size: 20px;">StartOver</label>
+</button>
+
+</html>

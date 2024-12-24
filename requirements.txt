@@ -1,0 +1,4 @@
+Flask==2.1.2
+Werkzeug==2.2.2
+flask-wtf
+pyrqlite @ git+https://github.com/rqlite/pyrqlite@v2.2.3
