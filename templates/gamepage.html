@@ -77,57 +77,68 @@ fieldset {
   {% endfor %}
 {% endif %}
 {% endwith %}
-      <br>
-      <fieldset style="font-size: 20px;font-family: 'Audiowide', sans-serif;"> 
+      <fieldset style="font-size: 15px;font-family: 'Audiowide', sans-serif;"> 
       Rules : Lose  -1, Win  +1, Tie  0, Fame  +10
       </fieldset>
-      <br>
 </p>
 
-  
 <body>
   <form action="/comp" method="post">
     <table  style="width:400px;">
-      <colgroup>
-        <col span="1" style="width: 50%;">
-        <col span="1" style="width: 50%;">
-      </colgroup>
       <tbody>
-          <tr style="height:150px">
-                  <td>
-                    <p style="font-size: 26px;font-family: 'Audiowide', sans-serif;">Click & Find !</p>
-                    <button class="button-54" name="button1" type="submit" value="Rock">
-                      <label style="font-size: 20px;">rock</label>
-                    </button>
-                    <br>
-                    <br>
-                    <button class="button-54" name="button1" type="submit" value="Paper">
-                      <label style="font-size: 20px;">paper</label>
-                    </button>
-                    <br>
-                    <br>
-                    <button class="button-54" name="button1" type="submit" value="Scissors">
-                      <label style="font-size: 20px;">scissors</label>
-                    </button>
-                  </td>
-
-                {% with img = get_flashed_messages(category_filter=["image"])%}
-                {% if img %}
-                  {% for i in img %}
-                  <td>
-                    <img src="/static/images/{{ i }}" alt="comp" width="250" height="250">
-                  </td>
-                  {% endfor %}
-                {% else %}
-                  <td>
-                    <img src="/static/images/computer.png" alt="comp" width="250" height="250">
-                  </td>
-                {% endif %}
-                {% endwith %}
-
+          <tr style="height:15px;">
+            {% with info = get_flashed_messages(category_filter=["info"])%}
+            {% if info %}
+              {% for inf in info %}
+              <div class="blink_me">
+                <h2 class="text-heading-default">{{ inf }}</h2>
+              </div>
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
+          </tr>
+          <tr style="height:150px;" >
+             {% with img = get_flashed_messages(category_filter=["image"])%}
+              {% if img %}
+                {% for i in img %}
+                <td colspan = "2">
+                  <img src="/static/images/{{ i }}" alt="comp" width="220" height="180">
+                </td>
+                {% endfor %}
+              {% else %}
+                <td colspan = "2">
+                  <img src="/static/images/computer.png" alt="comp" width="220" height="180">
+                </td>
+              {% endif %}
+              {% endwith %}
           </tr>
       </tbody>
     </table>
+    <table  style="width:400px;">
+      <tbody>
+          <tr style="height:70px">
+                  <td>
+                    <button class="button-54" name="button1" type="submit" value="Rock">
+                      <img src="/static/images/rock.jpg" width=45">
+                      <label style="font-size: 20px;">rock</label>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="button-54" name="button1" type="submit" value="Paper">
+                      <img src="/static/images/paper.jpg" width=45">
+                      <label style="font-size: 15px;">paper</label>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="button-54" name="button1" type="submit" value="Scissors">
+                      <img src="/static/images/scissors.jpg" width=20">
+                      <label style="font-size: 15px;">scissors</label>
+                    </button>
+                  </td>
+          </tr>
+      </tbody>
+    </table>
+    <p style="font-size: 26px;font-family: 'Audiowide', sans-serif;">Click, play & Win !</p>
   </form>
     <!-- <label style="font-size: 25px;"> Set a unique player-id </label>
     <input id="text" type="text" name="playerid"  style="width: 200px;"/> -->
@@ -138,15 +149,7 @@ fieldset {
 <!-- Needs to redirect to the same page -->
 <!-- return redirect('comp')    -->
 
-{% with info = get_flashed_messages(category_filter=["info"])%}
-{% if info %}
-  {% for inf in info %}
-  <div class="blink_me">
-    <h2 class="text-heading-default">{{ inf }}</h2>
-  </div>
-  {% endfor %}
-{% endif %}
-{% endwith %}
+
 
 {% with message = get_flashed_messages(category_filter=["message"])%}
 {% if message %}
@@ -156,17 +159,15 @@ fieldset {
 {% endif %}
 {% endwith %}
 
-<p style="font-size: 20px;font-family: 'Audiowide', sans-serif;">Hall of fame !!!</p>
-<select Name="lb" Size="3">
+<p style="font-size: 15px;font-family: 'Audiowide', sans-serif;">Hall of fame !!!</p>
+<select Name="lb" Size="2">
   <option>Robert </option> 
-  <option>Jonas </option> 
 {% with winmes = get_flashed_messages(category_filter=["winnermessage"])%}
 {% if winmes %}
   {% for msg in winmes %}
     <option> {{ msg }}</option>  
   {% endfor %}
-{% endif %}
-{% endwith %}
+{% endif %}{% endwith %}
 </select>
 
 <br>

@@ -19,7 +19,7 @@ inputtext = ''
 # Connect to the database
 connection = dbapi2.connect(
     host='rqlite.rqlite.svc',
-    # host='localhost',
+    #host='localhost',
     port=80,
 )
 
