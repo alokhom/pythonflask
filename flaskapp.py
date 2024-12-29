@@ -18,9 +18,9 @@ inputtext = ''
 # db
 # Connect to the database
 connection = dbapi2.connect(
-    host='rqlite.rqlite.svc',
-    #host='localhost',
-    port=80,
+    # host='rqlite.rqlite.svc',
+    host='localhost',
+    port=8086,
 )
 
 try:

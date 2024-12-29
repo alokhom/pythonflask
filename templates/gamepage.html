@@ -78,45 +78,41 @@ fieldset {
 {% endif %}
 {% endwith %}
       <fieldset style="font-size: 15px;font-family: 'Audiowide', sans-serif;"> 
-      Rules : Lose  -1, Win  +1, Tie  0, Fame  +10
+      Click Rules : Lose  -1, Win  +1, Tie  0, Fame  +10
       </fieldset>
 </p>
+
+{% with info = get_flashed_messages(category_filter=["info"])%}
+{% if info %}
+  {% for inf in info %}
+  <div class="blink_me">
+    <h2 class="text-heading-default">{{ inf }}</h2>
+  </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
 
 <body>
   <form action="/comp" method="post">
     <table  style="width:400px;">
       <tbody>
-          <tr style="height:15px;">
-            {% with info = get_flashed_messages(category_filter=["info"])%}
-            {% if info %}
-              {% for inf in info %}
-              <div class="blink_me">
-                <h2 class="text-heading-default">{{ inf }}</h2>
-              </div>
-              {% endfor %}
-            {% endif %}
-            {% endwith %}
-          </tr>
           <tr style="height:150px;" >
-             {% with img = get_flashed_messages(category_filter=["image"])%}
+            <td></td> 
+            {% with img = get_flashed_messages(category_filter=["image"])%}
               {% if img %}
                 {% for i in img %}
-                <td colspan = "2">
-                  <img src="/static/images/{{ i }}" alt="comp" width="220" height="180">
+                <td colspan = "1">
+                  <img src="/static/images/{{ i }}" alt="comp" width="140" height="150">
                 </td>
                 {% endfor %}
               {% else %}
-                <td colspan = "2">
-                  <img src="/static/images/computer.png" alt="comp" width="220" height="180">
+                <td colspan = "1">
+                  <img src="/static/images/computer.png" alt="comp" width="140" height="150">
                 </td>
               {% endif %}
               {% endwith %}
           </tr>
-      </tbody>
-    </table>
-    <table  style="width:400px;">
-      <tbody>
-          <tr style="height:70px">
+          <tr style="height:150px">
                   <td>
                     <button class="button-54" name="button1" type="submit" value="Rock">
                       <img src="/static/images/rock.jpg" width=45">
@@ -138,7 +134,7 @@ fieldset {
           </tr>
       </tbody>
     </table>
-    <p style="font-size: 26px;font-family: 'Audiowide', sans-serif;">Click, play & Win !</p>
+    <p style="font-size: 22px;font-family: 'Audiowide', sans-serif;">Click, play & Win !</p>
   </form>
     <!-- <label style="font-size: 25px;"> Set a unique player-id </label>
     <input id="text" type="text" name="playerid"  style="width: 200px;"/> -->
