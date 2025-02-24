@@ -114,7 +114,8 @@ fi
 if [ -z "$IMAGE_ID_LONG" ]; then
   # docker image inspect --format '{{json .}}' "$IMAGE_ID_SHORT" | jq -r '. | .Id'
   # sha256:96c63a7d3e502fcbbd8937a2523368c22d0edd1788b8389af095f64038318834
-  IMAGE_ID_LONG=$("$DOCKER_BIN" image inspect --format '{{json .}}' "$IMAGE_ID_SHORT" | jq -r '. | .Id')
+  # IMAGE_ID_LONG=$("$DOCKER_BIN" image inspect --format '{{json .}}' "$IMAGE_ID_SHORT" | jq -r '. | .Id')
+  IMAGE_ID_LONG=$("$DOCKER_BIN" image inspect --format '{{json .}}' "$IMAGE_NAME" | jq -r '. | .Id')
   # Make sure IMAGE_ID_LONG has value (should never happen)
   if [ -z "$IMAGE_ID_LONG" ]; then
     echo "Error: Id of $IMAGE_ID_SHORT is empty"
