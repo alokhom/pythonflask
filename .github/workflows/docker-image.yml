@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Jq tool
+      run: |
+        sudo apt-get update
+        sudo apt-get install jq
+    - name: Build the Docker image and tag
+      run: |
+        tag=$(date +%s)
+        sh bash/findtag.sh -n alokhom/python-docker -i 9ecb7a4b0adf -f 1.40. -l 10 -v
+        # docker build . --file Dockerfile --tag python-docker:"${tag}" && docker tag python-docker:"${tag}" alokhom/python-docker:1.40.13
+
