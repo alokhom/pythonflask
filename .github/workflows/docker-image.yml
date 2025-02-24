@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "CU-*" ]
     tags:
-      - v.1.**
+      - 'v*'
   pull_request:
     branches: [ "main" ]
 
@@ -25,7 +25,7 @@ jobs:
         images: ${{ vars.DOCKER_USERNAME }}/python-docker
         tags: |
           # branch event
-          type=ref,event=branch
+          # type=ref,event=branch
           # tag event
           type=ref,event=tag
           # pull request event
