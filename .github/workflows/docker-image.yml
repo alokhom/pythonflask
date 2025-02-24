@@ -18,6 +18,6 @@ jobs:
     - name: Build the Docker image and tag
       run: |
         tag=$(date +%s)
-        sh bash/findtag.sh -n alokhom/python-docker -i 9ecb7a4b0adf -f 1.40. -l 10 -v
+        ./bash/findtag.sh -n alokhom/python-docker -i 9ecb7a4b0adf -f 1.40. -l 10 -v
         # docker build . --file Dockerfile --tag python-docker:"${tag}" && docker tag python-docker:"${tag}" alokhom/python-docker:1.40.13
 
