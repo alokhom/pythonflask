@@ -23,7 +23,11 @@ jobs:
       with:
         images: ${{ vars.DOCKER_USERNAME }}/python-docker
         tags: |
+          # branch event
           type=ref,event=branch
+          # tag event
+          type=ref,event=tag
+          # pull request event
           type=ref,event=pr
           type=semver,pattern={{major}}.{{minor}}.{{patch}}
     - name: Log in to Docker Hub
