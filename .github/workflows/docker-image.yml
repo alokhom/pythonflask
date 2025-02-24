@@ -27,9 +27,9 @@ jobs:
           # branch event
           # type=ref,event=branch
           # tag event
-          type=ref,event=tag
+          # type=ref,event=tag
           # pull request event
-          type=ref,event=pr
+          # type=ref,event=pr
           # minimal
           type=semver,pattern={{version}}
     - name: Log in to Docker Hub
