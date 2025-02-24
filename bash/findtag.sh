@@ -241,3 +241,4 @@ for i in $TAGS; do
     echo "Image ID Source: $IMAGE_ID_LONG"
   fi
 done;
+
