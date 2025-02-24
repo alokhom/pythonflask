@@ -1,9 +1,10 @@
 name: Docker Image CI
 
 on:
-  workflow_dispatch:
   push:
     branches: [ "main" ]
+    tags:
+      - 1.**
   pull_request:
     branches: [ "main" ]
 
@@ -29,7 +30,7 @@ jobs:
           type=ref,event=tag
           # pull request event
           type=ref,event=pr
-          type=semver,pattern={{major}}.{{minor}}.{{patch}}
+          type=semver,pattern={{raw}}
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
